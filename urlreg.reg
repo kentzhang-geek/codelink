@@ -1,0 +1,12 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\codelink]
+@="URL:codelink Protocol Handler"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\codelink\shell]
+
+[HKEY_CLASSES_ROOT\codelink\shell\open]
+
+[HKEY_CLASSES_ROOT\codelink\shell\open\command]
+@="C:\\Tools\\bin\\codelink.exe open \"%1\""
