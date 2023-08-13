@@ -2,6 +2,7 @@ use std::collections::HashMap;
 use ini::Ini;
 use std::env;
 use std::iter::Map;
+use std::process::exit;
 
 mod usage;
 mod rider;
@@ -13,7 +14,13 @@ use tool_chain::ToolChain;
 
 fn main() {
     // read config file
-    let conf = Ini::load_from_file("config.ini").unwrap();
+    let mut conf_path = env::current_exe().unwrap().to_str().unwrap().to_string();
+    conf_path = conf_path.replace("codelink.exe", "config.ini");
+    if cfg!(debug_assertions) {
+        println!("debug mode use local config file");
+        conf_path = "config.ini".to_string();
+    }
+    let conf = Ini::load_from_file(conf_path).unwrap();
 
     let current_tool = conf.section(Some("Current Tool")).unwrap();
     let tool_name = current_tool.get("name").unwrap();
