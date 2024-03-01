@@ -8,6 +8,7 @@ mod usage;
 mod rider;
 mod tool_chain;
 mod command_sender;
+mod gen_by_file_line;
 
 use tool_chain::ToolChain;
 
@@ -63,6 +64,13 @@ fn main() {
             }
             command_sender::open(&tool_chains, &args[2], &tool_name.to_string());
         }
+        "gen" => {
+            if args.len() < 4 {
+                usage::print_usage();
+                return;
+            }
+            gen_by_file_line::from_parameters(args[2].clone(), args[3].clone());
+        },
         _ => {},
     }
 }
