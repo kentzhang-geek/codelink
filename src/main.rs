@@ -57,6 +57,15 @@ fn main() {
         "to_rider" => {
             rider::to_rider();
         },
+        "copy" => {
+            if args.len() < 3 {
+                usage::print_usage();
+                return;
+            }
+            // copy link to clipboard
+            let mut link: String = args[2].clone();
+            clipboard_win::set_clipboard_string(&link).unwrap();
+        },
         "open" => {
             if args.len() < 3 {
                 usage::print_usage();
