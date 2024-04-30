@@ -4,6 +4,11 @@ use regex::Regex;
 use urlencoding::decode;
 
 pub fn open(tool_chains: &HashMap<String, ToolChain>, link: &String, tool_name:&String) {
+    // if tool name is `copy`
+    if (tool_name == "copy") {
+        clipboard_win::set_clipboard_string(&link).unwrap();
+        return;
+    }
     // Check tool chain exits
     if !tool_chains.contains_key(tool_name) {
         println!("Tool chain {} not found", tool_name);
